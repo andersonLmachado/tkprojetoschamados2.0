@@ -1,5 +1,7 @@
 from tkinter import *
 from customtkinter import *
+from PIL import Image
+
 
 class RegistroAtendimentos2(CTk):
     def __init__(self):
@@ -11,6 +13,8 @@ class RegistroAtendimentos2(CTk):
         self.frametitle = CTkFrame(master=self, border_width=2)
         self.frametitle.pack(expand=True, anchor="center")
         self.labeltitle = CTkLabel(master=self.frametitle, text="Registro de Atendimentos", font=("Arial", 18, "bold"))
+        
+        imglixo = Image.open("lixo.png")
 
         set_default_color_theme("green")
         
@@ -37,6 +41,7 @@ class RegistroAtendimentos2(CTk):
         
         self.btn_suzano1 = CTkButton(master=self.frame, text="Cadastro Omnilink", command=self.Suzanocontador1)
         self.label_suzano1 = CTkLabel(master=self.frame, text="0")
+        self.btn_suzano1reduzir = CTkButton(master=self.frame, command=self.Suzanocontador1reduzir, width=15, height=1,image=CTkImage(dark_image=imglixo, light_image=imglixo))
         
         self.btn_suzano2 = CTkButton(master=self.frame, text="Verficar Espelhamento", command=self.Suzanocontador2)
         self.label_suzano2 = CTkLabel(master=self.frame, text="0")
@@ -67,6 +72,7 @@ class RegistroAtendimentos2(CTk):
         
         self.btn_suzano1.grid(row=1,column=0, pady=10, padx=10)
         self.label_suzano1.grid(row=1,column=1, pady=10, padx=10)
+        self.btn_suzano1reduzir.grid(row=1,column=2, pady=10, padx=10)
         
         self.btn_suzano2.grid(row=2,column=0, pady=10, padx=10)
         self.label_suzano2.grid(row=2,column=1, pady=10, padx=10)
@@ -120,6 +126,12 @@ class RegistroAtendimentos2(CTk):
     def Suzanocontador8(self):
         self.contador_suzano8 += 1
         self.label_suzano8.configure(text=f"{self.contador_suzano8}")
+    
+    #Funções para reduzir o contador
+    def Suzanocontador1reduzir(self):
+        if self.contador_suzano1 > 0:
+            self.contador_suzano1 -= 1
+            self.label_suzano1.configure(text=f"{self.contador_suzano1}")
 
 if __name__ == "__main__":
     app = RegistroAtendimentos2()
